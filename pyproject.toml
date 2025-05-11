@@ -1,0 +1,7 @@
+[project]
+name = "nexora"
+version = "0.1.0"
+description = "Hybrid RAG based customer facing chatbot"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []

@@ -1,0 +1,11 @@
+ID,Type,Question,Purpose
+1,Normal,How can I get my certificate of currency?,Provide instructions to download the certificate via the user's account.
+2,Normal,I need to change my credit card information.,Guide the user through updating payment details in their account settings.
+3,Normal,Am I covered for COVID-19 under my Personal Accident Insurance?,Explain coverage details related to COVID-19 as per the user's policy.
+4,Edge,Tell me about my coverage.,Prompt the user for more specific information to provide an accurate response.
+5,Edge,¿Cómo puedo obtener mi póliza?,"Respond indicating that the language is not supported, if multilingual support isn't implemented."
+6,Edge,Hw do I mke a cliam?,Recognize the intent despite typos and provide claim submission instructions.
+7,Edge,"I was wondering if you could help me understand the details of my policy, including but not limited to...",Summarize the query and ask for specific questions to provide concise answers.
+8,Edge,What is my policy number? What is my policy number? What is my policy number?,Address the repetition and provide the requested information once.
+9,Edge,What's the weather like today?,Inform the user that the chatbot is designed for insurance-related queries.
+10,Edge,<script>alert('test')</script>,Sanitize input and respond appropriately without executing any code.

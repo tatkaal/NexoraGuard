@@ -1,0 +1,1314 @@
+{
+  "products": [
+    {
+      "product_id": "PROD-859d85ba",
+      "name": "Professional Indemnity",
+      "description": "Covers companies for claims made by clients for financial loss due to alleged negligent acts, errors or omissions in professional service or advice.",
+      "target_industries": [
+        "Consulting",
+        "IT Services",
+        "Legal Services",
+        "Accounting",
+        "Architecture",
+        "Engineering",
+        "Healthcare",
+        "Real Estate",
+        "Education",
+        "Marketing"
+      ],
+      "coverage_options": [
+        "$1M",
+        "$2M",
+        "$5M",
+        "$10M",
+        "$20M"
+      ],
+      "premium_range": {
+        "min": 500,
+        "max": 3000,
+        "currency": "AUD"
+      },
+      "excess_range": {
+        "min": 500,
+        "max": 2500,
+        "currency": "AUD"
+      },
+      "key_features": [
+        "Legal representation at inquiries",
+        "Covers breach of professional duty",
+        "Cover for both actual and alleged breaches",
+        "Includes prior acts coverage",
+        "Run-off cover options"
+      ],
+      "exclusions": [
+        "Prior known claims",
+        "Intentional acts",
+        "Fraudulent activities",
+        "Criminal proceedings",
+        "Insolvency"
+      ],
+      "unique_selling_points": [
+        "Tailored for your specific profession",
+        "Retroactive coverage available",
+        "Coverage for contract breaches",
+        "Includes defamation coverage"
+      ],
+      "required_documents": [
+        "Business details",
+        "Claims history",
+        "Revenue information"
+      ]
+    },
+    {
+      "product_id": "PROD-9a5e1ec7",
+      "name": "Public Liability",
+      "description": "Covers organizations against legal liability for bodily injury, property damage, and advertising injury claims from third parties.",
+      "target_industries": [
+        "Retail",
+        "Hospitality",
+        "Construction",
+        "Events",
+        "Manufacturing",
+        "Transportation",
+        "Trades",
+        "Sports & Recreation",
+        "Property Management"
+      ],
+      "coverage_options": [
+        "$5M",
+        "$10M",
+        "$20M",
+        "$50M"
+      ],
+      "premium_range": {
+        "min": 300,
+        "max": 2000,
+        "currency": "AUD"
+      },
+      "excess_range": {
+        "min": 500,
+        "max": 1500,
+        "currency": "AUD"
+      },
+      "key_features": [
+        "Products liability coverage",
+        "Advertising injury protection",
+        "Property damage liability",
+        "Worldwide coverage (excluding USA/Canada)",
+        "Third-party bodily injury coverage"
+      ],
+      "exclusions": [
+        "Professional advice",
+        "Employee injuries",
+        "Contractual liabilities",
+        "Product recall",
+        "Aircraft/watercraft"
+      ],
+      "unique_selling_points": [
+        "No hidden fees",
+        "Fast certificate of currency",
+        "Flexible payment options",
+        "Coverage for property in your care"
+      ],
+      "required_documents": [
+        "Business details",
+        "Claims history",
+        "Revenue information"
+      ]
+    },
+    {
+      "product_id": "PROD-1b8e4196",
+      "name": "Business Insurance",
+      "description": "Covers firms against loss, damage, or theft of business property, contents, and stock, while also offering protection against business interruption.",
+      "target_industries": [
+        "All industries"
+      ],
+      "coverage_options": [
+        "Basic",
+        "Standard",
+        "Premium",
+        "Comprehensive"
+      ],
+      "premium_range": {
+        "min": 700,
+        "max": 5000,
+        "currency": "AUD"
+      },
+      "excess_range": {
+        "min": 500,
+        "max": 2000,
+        "currency": "AUD"
+      },
+      "key_features": [
+        "Business interruption protection",
+        "Theft coverage",
+        "Money coverage",
+        "Glass breakage coverage",
+        "Fire and specified perils protection"
+      ],
+      "exclusions": [
+        "Wear and tear",
+        "Certain natural disasters",
+        "Mechanical breakdown",
+        "Employee dishonesty"
+      ],
+      "unique_selling_points": [
+        "Customizable to your business needs",
+        "Option to include additional covers",
+        "New-for-old replacement",
+        "Coverage during transit"
+      ],
+      "required_documents": [
+        "Business details",
+        "Claims history",
+        "Revenue information"
+      ]
+    },
+    {
+      "product_id": "PROD-bc12fc8f",
+      "name": "Cyber Insurance",
+      "description": "Covers businesses against financial losses from data breaches, cyber attacks, system hacking, ransomware, and other cyber threats.",
+      "target_industries": [
+        "IT Services",
+        "E-commerce",
+        "Healthcare",
+        "Financial Services",
+        "Professional Services",
+        "Education",
+        "Retail",
+        "Hospitality"
+      ],
+      "coverage_options": [
+        "$100K",
+        "$250K",
+        "$500K",
+        "$1M",
+        "$2M"
+      ],
+      "premium_range": {
+        "min": 400,
+        "max": 3500,
+        "currency": "AUD"
+      },
+      "excess_range": {
+        "min": 1000,
+        "max": 5000,
+        "currency": "AUD"
+      },
+      "key_features": [
+        "IT forensic costs",
+        "Business interruption from cyber events",
+        "Media liability coverage",
+        "Data breach response costs",
+        "Regulatory defense and penalties"
+      ],
+      "exclusions": [
+        "Prior known incidents",
+        "Physical damage",
+        "Bodily injury",
+        "Infrastructure failure",
+        "War/terrorism"
+      ],
+      "unique_selling_points": [
+        "24/7 incident response team",
+        "Covers both first-party and third-party costs",
+        "Employee error coverage",
+        "Reputation management costs"
+      ],
+      "required_documents": [
+        "Business details",
+        "Claims history",
+        "Revenue information"
+      ]
+    },
+    {
+      "product_id": "PROD-e6df492d",
+      "name": "Management Liability",
+      "description": "Covers firms against claims related to mismanagement, including directors' and officers' liability, employment practices liability, and statutory liability.",
+      "target_industries": [
+        "All industries with directors/management"
+      ],
+      "coverage_options": [
+        "$1M",
+        "$2M",
+        "$5M",
+        "$10M"
+      ],
+      "premium_range": {
+        "min": 800,
+        "max": 4000,
+        "currency": "AUD"
+      },
+      "excess_range": {
+        "min": 1000,
+        "max": 3000,
+        "currency": "AUD"
+      },
+      "key_features": [
+        "Employment practices liability",
+        "Statutory liability",
+        "Directors & officers liability",
+        "Tax audit costs",
+        "Company liability coverage"
+      ],
+      "exclusions": [
+        "Prior known claims",
+        "Fraudulent acts",
+        "Major shareholder actions",
+        "Property damage",
+        "Professional services"
+      ],
+      "unique_selling_points": [
+        "Continuous coverage provision",
+        "Automatic cover for new subsidiaries",
+        "Coverage for outside directorships",
+        "Complimentary legal advice hotline"
+      ],
+      "required_documents": [
+        "Business details",
+        "Claims history",
+        "Revenue information"
+      ]
+    },
+    {
+      "product_id": "PROD-d6f85d16",
+      "name": "Tax Audit Insurance",
+      "description": "Covers organizations for professional fees incurred during a tax audit by the Australian Taxation Office (ATO) or other tax authorities.",
+      "target_industries": [
+        "All industries"
+      ],
+      "coverage_options": [
+        "$10K",
+        "$25K",
+        "$50K",
+        "$100K"
+      ],
+      "premium_range": {
+        "min": 200,
+        "max": 1000,
+        "currency": "AUD"
+      },
+      "excess_range": {
+        "min": 250,
+        "max": 1000,
+        "currency": "AUD"
+      },
+      "key_features": [
+        "BAS and GST audit protection",
+        "Expert representation during audits",
+        "Record reconstruction costs",
+        "ATO risk reviews coverage",
+        "Professional fees for tax audits"
+      ],
+      "exclusions": [
+        "Dishonest tax returns",
+        "Criminal prosecutions",
+        "Penalties and interest",
+        "Routine reviews",
+        "Self-initiated reviews"
+      ],
+      "unique_selling_points": [
+        "Coverage for all types of tax audits",
+        "Includes BAS and GST audits",
+        "No excess option available",
+        "Backdated coverage"
+      ],
+      "required_documents": [
+        "Business details",
+        "Claims history",
+        "Revenue information"
+      ]
+    }
+  ],
+  "occupation_data": [
+    {
+      "industry": "Accounting",
+      "occupation": "Accountant",
+      "risk_level": 1.9,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.016
+    },
+    {
+      "industry": "Accounting",
+      "occupation": "Bookkeeper",
+      "risk_level": 2.2,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.132
+    },
+    {
+      "industry": "Accounting",
+      "occupation": "Tax Agent",
+      "risk_level": 2.8,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.044
+    },
+    {
+      "industry": "Accounting",
+      "occupation": "Auditor",
+      "risk_level": 1.8,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.127
+    },
+    {
+      "industry": "Accounting",
+      "occupation": "Financial Advisor",
+      "risk_level": 1.9,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.053
+    },
+    {
+      "industry": "Accounting",
+      "occupation": "Payroll Manager",
+      "risk_level": 2.4,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.027
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Builder",
+      "risk_level": 4.9,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.117
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Contractor",
+      "risk_level": 4.8,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.119
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Carpenter",
+      "risk_level": 4.6,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.025
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Electrician",
+      "risk_level": 4.9,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.053
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Plumber",
+      "risk_level": 4.2,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.083
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Project Manager",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.15
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Civil Engineer",
+      "risk_level": 4.2,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.021
+    },
+    {
+      "industry": "Construction",
+      "occupation": "Surveyor",
+      "risk_level": 4.7,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.091
+    },
+    {
+      "industry": "Consulting",
+      "occupation": "Business Consultant",
+      "risk_level": 3.7,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.051
+    },
+    {
+      "industry": "Consulting",
+      "occupation": "Management Consultant",
+      "risk_level": 3.7,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.094
+    },
+    {
+      "industry": "Consulting",
+      "occupation": "HR Consultant",
+      "risk_level": 3.3,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.079
+    },
+    {
+      "industry": "Consulting",
+      "occupation": "Strategy Consultant",
+      "risk_level": 3.5,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.14
+    },
+    {
+      "industry": "Consulting",
+      "occupation": "Operations Consultant",
+      "risk_level": 3.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.046
+    },
+    {
+      "industry": "E-commerce",
+      "occupation": "Online Retailer",
+      "risk_level": 2.9,
+      "recommended_products": [
+        "Business Insurance",
+        "Cyber Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.069
+    },
+    {
+      "industry": "E-commerce",
+      "occupation": "Dropshipper",
+      "risk_level": 2.9,
+      "recommended_products": [
+        "Business Insurance",
+        "Cyber Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.134
+    },
+    {
+      "industry": "E-commerce",
+      "occupation": "E-commerce Consultant",
+      "risk_level": 2.7,
+      "recommended_products": [
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.028
+    },
+    {
+      "industry": "E-commerce",
+      "occupation": "Online Marketplace Seller",
+      "risk_level": 3.2,
+      "recommended_products": [
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.08
+    },
+    {
+      "industry": "E-commerce",
+      "occupation": "Digital Product Creator",
+      "risk_level": 2.7,
+      "recommended_products": [
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.03
+    },
+    {
+      "industry": "Education",
+      "occupation": "Tutor",
+      "risk_level": 2.7,
+      "recommended_products": [
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.133
+    },
+    {
+      "industry": "Education",
+      "occupation": "Trainer",
+      "risk_level": 3.0,
+      "recommended_products": [
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.079
+    },
+    {
+      "industry": "Education",
+      "occupation": "Educational Consultant",
+      "risk_level": 3.1,
+      "recommended_products": [
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.035
+    },
+    {
+      "industry": "Education",
+      "occupation": "Course Provider",
+      "risk_level": 3.0,
+      "recommended_products": [
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.12
+    },
+    {
+      "industry": "Education",
+      "occupation": "Teacher",
+      "risk_level": 2.9,
+      "recommended_products": [
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.145
+    },
+    {
+      "industry": "Education",
+      "occupation": "Lecturer",
+      "risk_level": 2.7,
+      "recommended_products": [
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.027
+    },
+    {
+      "industry": "Education",
+      "occupation": "School Counselor",
+      "risk_level": 2.8,
+      "recommended_products": [
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.011
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Physiotherapist",
+      "risk_level": 3.7,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.06
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Chiropractor",
+      "risk_level": 4.2,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.103
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Naturopath",
+      "risk_level": 3.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.041
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Massage Therapist",
+      "risk_level": 3.4,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.134
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Dietitian",
+      "risk_level": 4.1,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.025
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Occupational Therapist",
+      "risk_level": 3.5,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.137
+    },
+    {
+      "industry": "Healthcare",
+      "occupation": "Podiatrist",
+      "risk_level": 3.7,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.02
+    },
+    {
+      "industry": "Hospitality",
+      "occupation": "Café Owner",
+      "risk_level": 2.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.054
+    },
+    {
+      "industry": "Hospitality",
+      "occupation": "Restaurant Owner",
+      "risk_level": 2.3,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.103
+    },
+    {
+      "industry": "Hospitality",
+      "occupation": "Caterer",
+      "risk_level": 2.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.076
+    },
+    {
+      "industry": "Hospitality",
+      "occupation": "Food Truck Operator",
+      "risk_level": 2.2,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.021
+    },
+    {
+      "industry": "Hospitality",
+      "occupation": "Bar Owner",
+      "risk_level": 2.7,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.089
+    },
+    {
+      "industry": "Hospitality",
+      "occupation": "Hotel Manager",
+      "risk_level": 2.2,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.047
+    },
+    {
+      "industry": "IT Services",
+      "occupation": "IT Consultant",
+      "risk_level": 2.8,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.12
+    },
+    {
+      "industry": "IT Services",
+      "occupation": "Software Developer",
+      "risk_level": 2.8,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.043
+    },
+    {
+      "industry": "IT Services",
+      "occupation": "Web Designer",
+      "risk_level": 2.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.012
+    },
+    {
+      "industry": "IT Services",
+      "occupation": "System Administrator",
+      "risk_level": 2.9,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.039
+    },
+    {
+      "industry": "IT Services",
+      "occupation": "Cybersecurity Specialist",
+      "risk_level": 2.5,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance"
+      ],
+      "claim_likelihood": 0.042
+    },
+    {
+      "industry": "IT Services",
+      "occupation": "DevOps Engineer",
+      "risk_level": 2.8,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Cyber Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.031
+    },
+    {
+      "industry": "Legal Services",
+      "occupation": "Lawyer",
+      "risk_level": 2.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.053
+    },
+    {
+      "industry": "Legal Services",
+      "occupation": "Conveyancer",
+      "risk_level": 2.1,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.103
+    },
+    {
+      "industry": "Legal Services",
+      "occupation": "Legal Consultant",
+      "risk_level": 2.7,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.053
+    },
+    {
+      "industry": "Legal Services",
+      "occupation": "Paralegal",
+      "risk_level": 2.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.123
+    },
+    {
+      "industry": "Legal Services",
+      "occupation": "Mediator",
+      "risk_level": 1.9,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.139
+    },
+    {
+      "industry": "Legal Services",
+      "occupation": "Legal Secretary",
+      "risk_level": 2.5,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.077
+    },
+    {
+      "industry": "Manufacturing",
+      "occupation": "Small Manufacturer",
+      "risk_level": 1.4,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.083
+    },
+    {
+      "industry": "Manufacturing",
+      "occupation": "Product Designer",
+      "risk_level": 1.7,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.075
+    },
+    {
+      "industry": "Manufacturing",
+      "occupation": "Craftsperson",
+      "risk_level": 1.6,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.032
+    },
+    {
+      "industry": "Manufacturing",
+      "occupation": "Production Supervisor",
+      "risk_level": 1.1,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.127
+    },
+    {
+      "industry": "Manufacturing",
+      "occupation": "Quality Control Manager",
+      "risk_level": 1.3,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.03
+    },
+    {
+      "industry": "Marketing",
+      "occupation": "Marketing Consultant",
+      "risk_level": 1.4,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.104
+    },
+    {
+      "industry": "Marketing",
+      "occupation": "Digital Marketer",
+      "risk_level": 1.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.125
+    },
+    {
+      "industry": "Marketing",
+      "occupation": "Social Media Manager",
+      "risk_level": 1.5,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.089
+    },
+    {
+      "industry": "Marketing",
+      "occupation": "SEO Specialist",
+      "risk_level": 1.6,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.073
+    },
+    {
+      "industry": "Marketing",
+      "occupation": "Graphic Designer",
+      "risk_level": 1.5,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.013
+    },
+    {
+      "industry": "Marketing",
+      "occupation": "Content Creator",
+      "risk_level": 1.0,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.136
+    },
+    {
+      "industry": "Real Estate",
+      "occupation": "Real Estate Agent",
+      "risk_level": 3.0,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.142
+    },
+    {
+      "industry": "Real Estate",
+      "occupation": "Property Manager",
+      "risk_level": 3.3,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.098
+    },
+    {
+      "industry": "Real Estate",
+      "occupation": "Auctioneer",
+      "risk_level": 3.0,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.096
+    },
+    {
+      "industry": "Real Estate",
+      "occupation": "Valuer",
+      "risk_level": 3.4,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.045
+    },
+    {
+      "industry": "Real Estate",
+      "occupation": "Rental Manager",
+      "risk_level": 3.3,
+      "recommended_products": [
+        "Professional Indemnity",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.03
+    },
+    {
+      "industry": "Retail",
+      "occupation": "Shop Owner",
+      "risk_level": 1.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.065
+    },
+    {
+      "industry": "Retail",
+      "occupation": "Market Stall Holder",
+      "risk_level": 1.1,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.115
+    },
+    {
+      "industry": "Retail",
+      "occupation": "Specialty Retailer",
+      "risk_level": 1.6,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.146
+    },
+    {
+      "industry": "Retail",
+      "occupation": "Boutique Manager",
+      "risk_level": 1.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.103
+    },
+    {
+      "industry": "Retail",
+      "occupation": "Franchisee",
+      "risk_level": 1.3,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.015
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Painter",
+      "risk_level": 4.7,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.032
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Gardener",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.086
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Cleaner",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.13
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Handyman",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.149
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Locksmith",
+      "risk_level": 4.8,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.107
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Roof Tiler",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.076
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Plasterer",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.072
+    },
+    {
+      "industry": "Trades",
+      "occupation": "Cabinet Maker",
+      "risk_level": 5.0,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.047
+    },
+    {
+      "industry": "Transportation",
+      "occupation": "Courier",
+      "risk_level": 4.2,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.083
+    },
+    {
+      "industry": "Transportation",
+      "occupation": "Delivery Driver",
+      "risk_level": 3.9,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.123
+    },
+    {
+      "industry": "Transportation",
+      "occupation": "Removalist",
+      "risk_level": 3.8,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.138
+    },
+    {
+      "industry": "Transportation",
+      "occupation": "Freight Forwarder",
+      "risk_level": 3.9,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance"
+      ],
+      "claim_likelihood": 0.124
+    },
+    {
+      "industry": "Transportation",
+      "occupation": "Rideshare Driver",
+      "risk_level": 3.6,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Tax Audit Insurance"
+      ],
+      "claim_likelihood": 0.051
+    },
+    {
+      "industry": "Transportation",
+      "occupation": "Taxi Operator",
+      "risk_level": 3.5,
+      "recommended_products": [
+        "Public Liability",
+        "Business Insurance",
+        "Management Liability"
+      ],
+      "claim_likelihood": 0.139
+    }
+  ]
+}

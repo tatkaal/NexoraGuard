@@ -9,6 +9,7 @@ def init_nexora_rag():
     import csv
     from pathlib import Path
     import shutil # For cleaning up vector store if needed
+    import time
 
     # LangChain components
     # from langchain_community.vectorstores import Chroma
@@ -16,7 +17,7 @@ def init_nexora_rag():
     # from langchain_community.embeddings import OllamaEmbeddings
     # from langchain_community.chat_models import ChatOllama
     from langchain_ollama import OllamaEmbeddings, ChatOllama
-    from langchain.prompts import ChatPromptTemplate, PromptTemplate
+    from langchain.prompts import PromptTemplate
     from langchain.chains import RetrievalQA
     from langchain.schema import Document
     from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler # For streaming
@@ -27,9 +28,9 @@ def init_nexora_rag():
     from spacy.matcher import Matcher, PhraseMatcher
 
     # --- Global Configurations ---
-    NEXORA_MODEL_NAME = 'qwen3:1.7b'
+    NEXORA_MODEL_NAME = 'gemma3:4b'
 
-    EMBEDDING_MODEL_FOR_OLLAMA = NEXORA_MODEL_NAME
+    EMBEDDING_MODEL_FOR_OLLAMA = "mxbai-embed-large"
 
     DATA_DIR = Path('data') # Create a dedicated directory for this project's data
     VECTOR_STORE_DIR = Path('nexora_chroma_vector_store')
@@ -54,16 +55,6 @@ def init_nexora_rag():
     )
     embeddings = OllamaEmbeddings(model=EMBEDDING_MODEL_FOR_OLLAMA)
 
-
-    ##utility functions
-    def test_embedding_model():
-        print("→ Testing embedding connectivity…")
-        try:
-            sample = embeddings.embed_documents(["hello world"])
-            print("Embedding OK:", sample[:5])
-        except Exception as e:
-            print("Embedding error:", e)
-            raise
 
     # ## 2. Data Ingestion & Preprocessing: The Knowledge Foundation
     # 
@@ -151,10 +142,10 @@ def init_nexora_rag():
                 }
             ))
         print(f"Successfully processed {len(product_docs)} products into documents.")
-        if product_docs:
-            print("\nSample Product Document Content:")
-            print(product_docs[0].page_content)
-            print(f"\nSample Product Document Metadata: {product_docs[0].metadata}")
+        # if product_docs:
+        #     print("\nSample Product Document Content:")
+        #     print(product_docs[0].page_content)
+        #     print(f"\nSample Product Document Metadata: {product_docs[0].metadata}")
     else:
         print("No product data loaded to process.")
 
@@ -208,56 +199,13 @@ def init_nexora_rag():
                 for _, row in faqs_df.iterrows() if pd.notna(row.question) and pd.notna(row.answer) # Handle NaN values
             ]
         print(f"Successfully processed {len(faq_docs)} FAQs into documents.")
-        if faq_docs:
-            print("\nSample FAQ Document Content:")
-            print(faq_docs[0].page_content)
-            print(f"\nSample FAQ Document Metadata: {faq_docs[0].metadata}")
+        # if faq_docs:
+        #     print("\nSample FAQ Document Content:")
+        #     print(faq_docs[0].page_content)
+        #     print(f"\nSample FAQ Document Metadata: {faq_docs[0].metadata}")
     else:
         print(f"{FAQS_FILE} not found. Skipping FAQ processing.")
         faq_docs = []
-
-    # ### 2.3. Chat Conversations Data (`chat_conversations.json`) - For Analysis & Future Fine-Tuning
-    # This dataset is primarily earmarked for a future fine-tuning strategy (discussed later). However, analyzing it can provide insights into common user intents, entities, and phrasing, which can inform our current RAG prompt engineering and intent classification.
-    # 
-    # For now, we will load it and outline its potential. We could, for example, extract Q&A pairs from successful conversations to augment our knowledge base if gaps are found.
-
-    chat_conversation_docs = [] # Not directly adding to KB for RAG now, but for analysis
-    if CHAT_CONVERSATIONS_FILE.exists():
-        with open(CHAT_CONVERSATIONS_FILE, 'r', encoding='utf-8') as f:
-            try:
-                chat_data = json.load(f)
-                print(f"Loaded {len(chat_data)} chat conversations from {CHAT_CONVERSATIONS_FILE}.")
-                # Example: Extracting simple Q&A patterns for potential KB augmentation or intent examples
-                # This is a conceptual step; full processing would require more sophisticated logic.
-                potential_new_qas = []
-                for conv in chat_data:
-                    messages = conv.get('messages', [])
-                    for i in range(len(messages) - 1):
-                        if messages[i]['role'] == 'customer' and messages[i+1]['role'] == 'agent':
-                            # Simple heuristic: if customer asks and agent answers immediately
-                            q = messages[i]['text']
-                            a = messages[i+1]['text']
-                            # Further filtering could be applied (e.g., length, keywords)
-                            if len(q) > 10 and len(a) > 10 and "?" in q: # Basic filter
-                                potential_new_qas.append({"question": q, "answer": a, "source_conversation_id": conv.get("id")})
-                
-                print(f"Identified {len(potential_new_qas)} potential Q&A pairs from chat logs for review.")
-                if potential_new_qas:
-                    print("Example potential Q&A:", potential_new_qas[0])
-                
-                # We are NOT adding these to `documents` for now to keep the KB focused on curated content (products, FAQs).
-                # These would be candidates for manual review and addition to FAQs, or for fine-tuning datasets.
-
-            except json.JSONDecodeError as e:
-                print(f"Error decoding {CHAT_CONVERSATIONS_FILE}: {e}")
-                chat_data = []
-            except Exception as e:
-                print(f"An error occurred while processing {CHAT_CONVERSATIONS_FILE}: {e}")
-                chat_data = []
-    else:
-        print(f"{CHAT_CONVERSATIONS_FILE} not found. Skipping chat conversation analysis.")
-        chat_data = []
-
 
     # ### 2.4. Consolidating the Knowledge Base
     # Combine all processed documents into a single list for vector store creation.
@@ -265,9 +213,9 @@ def init_nexora_rag():
     documents = product_docs + faq_docs
     if documents:
         print(f"\nTotal documents for RAG knowledge base: {len(documents)}")
-        print("Sample of combined documents (first product and first FAQ):")
-        if product_docs: print(f"Product Doc Example Metadata: {product_docs[0].metadata}")
-        if faq_docs: print(f"FAQ Doc Example Metadata: {faq_docs[0].metadata}")
+        # print("Sample of combined documents (first product and first FAQ):")
+        # if product_docs: print(f"Product Doc Example Metadata: {product_docs[0].metadata}")
+        # if faq_docs: print(f"FAQ Doc Example Metadata: {faq_docs[0].metadata}")
     else:
         print("No documents were processed. The knowledge base is empty. Chatbot functionality will be severely limited.")
 
@@ -301,15 +249,15 @@ def init_nexora_rag():
             print(f"Building new vector store at {VECTOR_STORE_DIR}...")
             if not VECTOR_STORE_DIR.exists(): # Ensure directory exists before Chroma tries to write to it
                 VECTOR_STORE_DIR.mkdir(parents=True, exist_ok=True)
-            
-            test_embedding_model()
 
+            start = time.time()
             vector_store = Chroma.from_documents(
                 documents=documents,
                 embedding=embeddings,
                 persist_directory=str(VECTOR_STORE_DIR) # Chroma expects a string path
             )
-            print(f"New vector store built and persisted at {VECTOR_STORE_DIR}.")
+            elapsed = time.time() - start
+            print(f'Built new vector store → {VECTOR_STORE_DIR} in {elapsed:.2f}s')
 
         # # Test the vector store with a sample query (if it was successfully created/loaded)
         # if vector_store:
@@ -333,18 +281,6 @@ def init_nexora_rag():
     # 
     # ### 4.1. Defining Intents and Entities
     # We'll define key intents relevant to Nexora's customer service.
-
-    # --- Intent & Entity Configuration ---
-    INTENT_PATTERNS_REGEX = {
-        'get_quote': r'\b(get a quote|quote for|how much for|pricing on)\b',
-        'product_info': r'\b(what is|tell me about|details on|info on)\s+([A-Za-z\s]+insurance)\b|\b(compare|difference between)\b',
-        'coverage_query': r'\b(cover(ed|s|age)|include|policy limit|exclusion|excess)\b',
-        'claim_query': r'\b(claim|lodge|report an incident|damage|incident)\b',
-        'account_management': r'\b(my account|login|password|policy document|certificate of currency|update details|amend policy)\b',
-        'general_greeting': r'\b(hi|hello|hey|good morning|good afternoon)\b',
-        'general_farewell': r'\b(bye|goodbye|thanks|thank you)\b',
-        'ask_agent': r'\b(human|agent|person|talk to someone)\b'
-    }
 
     # Extract all product names for entity matching
     ALL_PRODUCT_NAMES = []
@@ -374,7 +310,17 @@ def init_nexora_rag():
 
     # ### 4.2. Intent and Entity Extraction Functions
     # These functions will process the user's query.
-
+    INTENT_PATTERNS_REGEX = {
+    'get_quote': r'\b(get a quote|quote for|how much for|pricing on)\b',
+    'product_info': r'\b(what is|tell me about|details on|info on)\s+([A-Za-z\s]+insurance)\b|\b(compare|difference between)\b',
+    'coverage_query': r'\b(cover(ed|s|age)|include|policy limit|exclusion|excess)\b',
+    'claim_query': r'\b(claim|lodge|report an incident|damage|incident)\b',
+    'account_management': r'\b(my account|login|password|policy document|certificate of currency|update details|amend policy|payment)\b',
+    'general_greeting': r'\b(hi|hello|hey|good morning|good afternoon)\b',
+    'general_farewell': r'\b(bye|goodbye|thanks|thank you)\b',
+    'ask_agent': r'\b(human|agent|person|talk to someone)\b'
+    }
+        
     def classify_intent_and_extract_entities(query: str):
         query_lower = query.lower()
         doc = nlp(query) # Process with SpaCy once
@@ -508,6 +454,7 @@ def init_nexora_rag():
     6.  If the query is a simple greeting, respond politely and ask how you can help.
     7.  If the query is a farewell, respond politely.
     8.  If the user asks to speak to a human, provide contact details for Nexora customer support.
+    9.  Answer to the point and in concise manner without excessive unrelated information.
 
     **Answer:**
     """
@@ -532,6 +479,7 @@ def init_nexora_rag():
                     # 'score_threshold': 0.6 # Example: filter by relevance score (Chroma supports this with specific embedding types)
                 }
             ),
+            
             chain_type_kwargs={"prompt": RAG_PROMPT},
             return_source_documents=True # Crucial for transparency and debugging
         )
@@ -540,6 +488,27 @@ def init_nexora_rag():
         print("Error: Vector store not available. RAG chain cannot be initialized.")
         rag_chain = None
 
+    # ### Quick Test
+    def ask_and_debug(chain, question: str):
+        # 1) retrieve the top-k docs
+        docs = chain.retriever.get_relevant_documents(question)
+        # 2) build exactly the same context string
+        context = "\n\n".join(doc.page_content for doc in docs)
+        print("───── CONTEXT SENT TO LLM ─────\n")
+        print(context)
+        print("\n──────── END CONTEXT ────────\n")
+        # 3) finally ask the chain
+        return chain({"query": question})
+
+    # now use our helper instead of rag_chain.invoke:
+    question = 'What does Professional Indemnity cover?'
+    print(ask_and_debug(rag_chain, question))
+
+    question = 'How do I change my password?'
+    print(ask_and_debug(rag_chain, question))
+
+    question = 'How do I update my personal details?'
+    print(ask_and_debug(rag_chain, question))
 
     # ### 5.3. Intelligent Query Processing Function
     # This function will take a user query, get intent/entities, and then invoke the RAG chain.
@@ -638,127 +607,3 @@ def init_nexora_rag():
 # else:
 #     print("RAG chain is not initialized, skipping tests for ask_nexora_guard.")
 
-# ## 6. Interactive Chatbot Demonstration (Streamlit Web App)
-
-def run_streamlit_app():
-    import streamlit as st
-
-    st.set_page_config(page_title="NexoraGuard AI Chatbot", layout="wide")
-
-    # --- Sidebar ---
-    st.sidebar.title("NexoraGuard Controls")
-    st.sidebar.info(
-        "This is a demo of the Nexora RAG Customer Service Chatbot. "
-        "It uses a local LLM (`qwen3:1.7b` via Ollama) and a knowledge base "
-        "built from Nexora's product and FAQ data."
-    )
-    show_debug_info = st.sidebar.checkbox("Show Debug Info (Intent, Entities, Sources)", value=True)
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### About NexoraGuard")
-    st.sidebar.markdown(
-        "NexoraGuard is designed to assist with queries regarding Nexora's insurance products, "
-        "coverage, claims, and account management."
-    )
-
-    # --- Header ---
-    st.title("🤖 NexoraGuard Insurance Assistant")
-    st.caption("Your AI-powered guide to Nexora's insurance solutions.")
-
-    # --- Load or build RAG backend (cached) ---
-    ask_nexora_guard, rag_chain, vector_store = init_nexora_rag()
-
-    # --- Initialize chat history ---
-    if "messages" not in st.session_state:
-        st.session_state.messages = [
-            {
-                "role": "assistant",
-                "content": "Hello! I'm NexoraGuard. How can I help you with your Nexora insurance needs today?",
-                "sources": []
-            }
-        ]
-
-    # --- Render chat messages ---
-    for msg_idx, message in enumerate(st.session_state.messages):
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
-            # Show sources for assistant messages when debugging
-            if message["role"] == "assistant" and show_debug_info and message.get("sources"):
-                with st.expander("View Sources Used", expanded=False):
-                    for src_idx, source in enumerate(message["sources"]):
-                        st.markdown(
-                            f"**Source {src_idx+1}: Type – {source.metadata.get('source_type','N/A')}**"
-                        )
-                        if source.metadata.get('source_type') == 'product_data':
-                            st.caption(f"Product: {source.metadata.get('product_name','N/A')}")
-                        elif source.metadata.get('source_type') == 'faq':
-                            st.caption(f"FAQ Category: {source.metadata.get('category','N/A')}")
-                            st.caption(f"Q: {source.metadata.get('question','N/A')}")
-
-                        key = f"snip_{msg_idx}_{src_idx}_{source.metadata.get('product_id', source.metadata.get('question',''))}"
-                        st.text_area(
-                            label=f"Content Snippet {src_idx+1}",
-                            value=(source.page_content[:500] + "...") if len(source.page_content) > 500 else source.page_content,
-                            height=100,
-                            disabled=True,
-                            key=key
-                        )
-
-    # --- User input ---
-    if user_input := st.chat_input("Ask about Nexora products, coverage, claims..."):
-        # Append user message
-        st.session_state.messages.append({"role": "user", "content": user_input, "sources": []})
-        with st.chat_message("user"):
-            st.markdown(user_input)
-
-        # Assistant thinking
-        with st.spinner("NexoraGuard is thinking..."):
-            if not rag_chain or not vector_store:
-                response = {
-                    "answer": "I'm sorry, the AI system isn't fully initialized. Please try again later.",
-                    "sources": [], "intent": "error", "entities": {}
-                }
-            else:
-                response = ask_nexora_guard(user_input)
-
-        # Append and display assistant response
-        assistant_msg = {
-            "role": "assistant",
-            "content": response["answer"],
-            "sources": response.get("sources", [])
-        }
-        st.session_state.messages.append(assistant_msg)
-
-        with st.chat_message("assistant"):
-            st.markdown(assistant_msg["content"])
-            if show_debug_info:
-                st.caption(f"Detected Intent: {response['intent']}")
-                st.caption(f"Extracted Entities: {response['entities']}")
-
-                if assistant_msg["sources"]:
-                    with st.expander("View Sources Used", expanded=False):
-                        new_idx = len(st.session_state.messages) - 1
-                        for src_idx, source in enumerate(assistant_msg["sources"]):
-                            st.markdown(
-                                f"**Source {src_idx+1}: Type – {source.metadata.get('source_type','N/A')}**"
-                            )
-                            if source.metadata.get('source_type') == 'product_data':
-                                st.caption(f"Product: {source.metadata.get('product_name','N/A')}")
-                            elif source.metadata.get('source_type') == 'faq':
-                                st.caption(f"FAQ Category: {source.metadata.get('category','N/A')}")
-                                st.caption(f"Q: {source.metadata.get('question','N/A')}")
-
-                            key2 = f"streamlit_{new_idx}_{src_idx}_{source.metadata.get('product_id', source.metadata.get('question',''))}"
-                            st.text_area(
-                                label=f"Content Snippet {src_idx+1}",
-                                value=(source.page_content[:500] + "...") if len(source.page_content) > 500 else source.page_content,
-                                height=100,
-                                disabled=True,
-                                key=key2
-                            )
-                else:
-                    st.caption("No specific source documents were heavily relied upon for this response.")
-
-# # To signal where the "main" execution for streamlit would start if this notebook were a script:
-if __name__ == '__main__':
-    run_streamlit_app()

@@ -12,10 +12,7 @@ def init_nexora_rag():
     import time
 
     # LangChain components
-    # from langchain_community.vectorstores import Chroma
     from langchain_chroma import Chroma
-    # from langchain_community.embeddings import OllamaEmbeddings
-    # from langchain_community.chat_models import ChatOllama
     from langchain_ollama import OllamaEmbeddings, ChatOllama
     from langchain.prompts import PromptTemplate
     from langchain.chains import RetrievalQA
@@ -35,9 +32,7 @@ def init_nexora_rag():
     DATA_DIR = Path('data') # Create a dedicated directory for this project's data
     VECTOR_STORE_DIR = Path('nexora_chroma_vector_store')
     PRODUCTS_FILE = DATA_DIR / 'products_occupation.json'
-    FAQS_FILE = DATA_DIR / 'faqs.csv'
     FAQS_CLEANED_FILE = DATA_DIR / 'faqs_cleaned.csv'
-    CHAT_CONVERSATIONS_FILE = DATA_DIR / 'chat_conversations.json'
 
     # Create data directory if it doesn't exist
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -150,36 +145,6 @@ def init_nexora_rag():
         print("No product data loaded to process.")
 
     # ### 2.2. FAQs Data (`faqs.csv`)
-    # CSV Cleaning (as provided, robust for unquoted commas in question field)
-    if FAQS_FILE.exists():
-        with open(FAQS_FILE, "r", encoding="utf-8") as infile, \
-            open(FAQS_CLEANED_FILE, "w", newline="", encoding="utf-8") as outfile:
-            reader = csv.reader(infile)
-            writer = csv.writer(outfile, quoting=csv.QUOTE_MINIMAL)
-
-            try:
-                header = next(reader)
-                writer.writerow(header)
-
-                for row in reader:
-                    if not row: continue # Skip empty rows
-                    if len(row) > 3: # Question field likely contains unquoted commas
-                        question_parts = row[:-2]
-                        question = ",".join(question_parts).strip('" ') # Join and strip quotes/spaces
-                        answer = row[-2].strip('" ')
-                        category = row[-1].strip('" ')
-                        writer.writerow([question, answer, category])
-                    elif len(row) == 3:
-                        writer.writerow([col.strip('" ') for col in row])
-                    else:
-                        print(f"Skipping malformed FAQ row: {row}") # Log malformed rows
-            except StopIteration:
-                print(f"Warning: {FAQS_FILE} might be empty or just has a header.")
-                # Create an empty cleaned file with header if original was empty/header-only
-                if 'header' not in locals() or not header: header = ['question', 'answer', 'category']
-                writer.writerow(header)
-
-
         faqs_df = pd.read_csv(FAQS_CLEANED_FILE)
         # Validate structure
         expected_cols = {'question', 'answer', 'category'}
@@ -203,9 +168,6 @@ def init_nexora_rag():
         #     print("\nSample FAQ Document Content:")
         #     print(faq_docs[0].page_content)
         #     print(f"\nSample FAQ Document Metadata: {faq_docs[0].metadata}")
-    else:
-        print(f"{FAQS_FILE} not found. Skipping FAQ processing.")
-        faq_docs = []
 
     # ### 2.4. Consolidating the Knowledge Base
     # Combine all processed documents into a single list for vector store creation.
@@ -271,7 +233,7 @@ def init_nexora_rag():
         #     else:
         #         print("No documents retrieved. The vector store might be empty or the query too dissimilar.")
 
-    # ## 4. Enhanced Intent Recognition & Entity Extraction
+    # ## 4. Intent Recognition & Entity Extraction
     # 
     # Understanding the user's *intent* and key *entities* in their query is crucial for guiding the RAG pipeline effectively. We'll enhance the provided basic system.
     # 
@@ -488,27 +450,29 @@ def init_nexora_rag():
         print("Error: Vector store not available. RAG chain cannot be initialized.")
         rag_chain = None
 
-    # ### Quick Test
-    def ask_and_debug(chain, question: str):
-        # 1) retrieve the top-k docs
-        docs = chain.retriever.get_relevant_documents(question)
-        # 2) build exactly the same context string
-        context = "\n\n".join(doc.page_content for doc in docs)
-        print("───── CONTEXT SENT TO LLM ─────\n")
-        print(context)
-        print("\n──────── END CONTEXT ────────\n")
-        # 3) finally ask the chain
-        return chain({"query": question})
+    # # ### Quick Test
+    # def ask_and_debug(chain, question: str):
+    #     # 1) retrieve the top-k docs
+    #     docs = chain.retriever.get_relevant_documents(question)
+    #     # 2) build exactly the same context string
+    #     context = "\n\n".join(doc.page_content for doc in docs)
+    #     print("Actual question: ", question)
+    #     print('-'*50)
+    #     print("───── CONTEXT SENT TO LLM ─────\n")
+    #     print(context)
+    #     print("\n──────── END CONTEXT ────────\n")
+    #     # 3) finally ask the chain
+    #     return chain.invoke({'query': question})
 
-    # now use our helper instead of rag_chain.invoke:
-    question = 'What does Professional Indemnity cover?'
-    print(ask_and_debug(rag_chain, question))
+    # # now use our helper instead of rag_chain.invoke:
+    # question = 'What does Professional Indemnity cover?'
+    # print(ask_and_debug(rag_chain, question))
 
-    question = 'How do I change my password?'
-    print(ask_and_debug(rag_chain, question))
+    # question = 'How do I change my password?'
+    # print(ask_and_debug(rag_chain, question))
 
-    question = 'How do I update my personal details?'
-    print(ask_and_debug(rag_chain, question))
+    # question = 'How do I update my personal details?'
+    # print(ask_and_debug(rag_chain, question))
 
     # ### 5.3. Intelligent Query Processing Function
     # This function will take a user query, get intent/entities, and then invoke the RAG chain.

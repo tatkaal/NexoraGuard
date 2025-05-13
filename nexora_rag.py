@@ -1,7 +1,7 @@
 # Streamlit (for the web app part)
 import streamlit as st
 
-@st.cache_resource(show_spinner=False)
+@st.cache_resource(show_spinner=True)
 def init_nexora_rag():
     import json
     import re
@@ -39,7 +39,6 @@ def init_nexora_rag():
 
     # Initialize SpaCy
     nlp = spacy.load('en_core_web_md')
-
 
     # Ollama settings
     llm = ChatOllama(
@@ -145,29 +144,29 @@ def init_nexora_rag():
         print("No product data loaded to process.")
 
     # ### 2.2. FAQs Data (`faqs.csv`)
-        faqs_df = pd.read_csv(FAQS_CLEANED_FILE)
-        # Validate structure
-        expected_cols = {'question', 'answer', 'category'}
-        if not expected_cols.issubset(faqs_df.columns):
-            print(f"Error: Cleaned FAQ CSV {FAQS_CLEANED_FILE} has unexpected columns: {faqs_df.columns}. Expected: {expected_cols}")
-            faq_docs = []
-        else:
-            faq_docs = [
-                Document(
-                    page_content=f"Question: {row.question}\nAnswer: {row.answer}",
-                    metadata={
-                        'source_type': 'faq',
-                        'category': row.category,
-                        'question': row.question # Adding original question to metadata for potential exact matching
-                    }
-                )
-                for _, row in faqs_df.iterrows() if pd.notna(row.question) and pd.notna(row.answer) # Handle NaN values
-            ]
-        print(f"Successfully processed {len(faq_docs)} FAQs into documents.")
-        # if faq_docs:
-        #     print("\nSample FAQ Document Content:")
-        #     print(faq_docs[0].page_content)
-        #     print(f"\nSample FAQ Document Metadata: {faq_docs[0].metadata}")
+    faqs_df = pd.read_csv(FAQS_CLEANED_FILE)
+    # Validate structure
+    expected_cols = {'question', 'answer', 'category'}
+    if not expected_cols.issubset(faqs_df.columns):
+        print(f"Error: Cleaned FAQ CSV {FAQS_CLEANED_FILE} has unexpected columns: {faqs_df.columns}. Expected: {expected_cols}")
+        faq_docs = []
+    else:
+        faq_docs = [
+            Document(
+                page_content=f"Question: {row.question}\nAnswer: {row.answer}",
+                metadata={
+                    'source_type': 'faq',
+                    'category': row.category,
+                    'question': row.question # Adding original question to metadata for potential exact matching
+                }
+            )
+            for _, row in faqs_df.iterrows() if pd.notna(row.question) and pd.notna(row.answer) # Handle NaN values
+        ]
+    print(f"Successfully processed {len(faq_docs)} FAQs into documents.")
+    # if faq_docs:
+    #     print("\nSample FAQ Document Content:")
+    #     print(faq_docs[0].page_content)
+    #     print(f"\nSample FAQ Document Metadata: {faq_docs[0].metadata}")
 
     # ### 2.4. Consolidating the Knowledge Base
     # Combine all processed documents into a single list for vector store creation.
@@ -221,17 +220,6 @@ def init_nexora_rag():
             elapsed = time.time() - start
             print(f'Built new vector store → {VECTOR_STORE_DIR} in {elapsed:.2f}s')
 
-        # # Test the vector store with a sample query (if it was successfully created/loaded)
-        # if vector_store:
-        #     print("\nTesting vector store retrieval with 'professional indemnity details':")
-        #     sample_retrieved_docs = vector_store.similarity_search("professional indemnity details", k=1)
-        #     if sample_retrieved_docs:
-        #         print(f"Retrieved {len(sample_retrieved_docs)} document(s).")
-        #         print("Content of top retrieved document:")
-        #         print(sample_retrieved_docs[0].page_content[:300] + "...") # Print snippet
-        #         print(f"Metadata: {sample_retrieved_docs[0].metadata}")
-        #     else:
-        #         print("No documents retrieved. The vector store might be empty or the query too dissimilar.")
 
     # ## 4. Intent Recognition & Entity Extraction
     # 
@@ -262,13 +250,6 @@ def init_nexora_rag():
         phrase_matcher.add("INSURANCE_PRODUCT", product_patterns)
     else:
         print("No product patterns to add to PhraseMatcher.")
-
-
-    # Example: More complex intent patterns using SpaCy's rule-based Matcher
-    # Pattern for asking about exclusions for a specific product
-    # e.g., "What are the exclusions for Professional Indemnity?"
-    # [{"LOWER": "what"}, {"LOWER": "are"}, {"LOWER": "the"}, {"LOWER": "exclusions"}, {"LOWER": "for"}, {"ENT_TYPE": "INSURANCE_PRODUCT", "OP": "?"}, {"POS": "PROPN", "OP": "*"}, {"LOWER": "insurance", "OP": "?"}]
-    # This is illustrative; more patterns needs be added. For now, we'll focus on using the extracted product entities.
 
     # ### 4.2. Intent and Entity Extraction Functions
     # These functions will process the user's query.
@@ -369,33 +350,6 @@ def init_nexora_rag():
 
         return detected_intent, entities
 
-    # # Test the enhanced functions
-    # test_queries = [
-    #     "Hi there, what is Professional Indemnity insurance?",
-    #     "Tell me about coverage for my consulting business.",
-    #     "How much does Public Liability cost for a retail shop?",
-    #     "I need to lodge a claim for property damage.",
-    #     "How do I get my certificate of currency?",
-    #     "What are the exclusions for Cyber Insurance?",
-    #     "Do you cover accountants for professional indemnity?",
-    #     "Thanks, bye!"
-    # ]
-
-    # print("--- Intent & Entity Extraction Tests ---")
-    # for q in test_queries:
-    #     intent, found_entities = classify_intent_and_extract_entities(q)
-    #     print(f"Query: '{q}'\n  -> Intent: {intent}\n  -> Entities: {found_entities}\n")
-
-    # ## 5. Advanced RAG Pipeline Construction
-    # 
-    # Now, we assemble the RAG chain. Key enhancements include:
-    # *   **Dynamic Prompting:** The prompt will be subtly adjusted or informed by the detected intent and entities.
-    # *   **Source Attribution:** The chain will return the source documents used to generate the answer, enabling transparency.
-    # *   **Context-Aware Retrieval (Conceptual):** While basic retrieval uses similarity, future enhancements could involve filtering search results based on extracted entities (e.g., specific product names) before they are sent to the LLM. For this iteration, the entities will primarily guide prompt formulation and response validation.
-    # 
-    # ### 5.1. Crafting a Persona-Driven, Dynamic Prompt
-    # The prompt guides the LLM's behavior. It's crucial for accuracy, tone, and staying within bounds.
-
     BASE_PROMPT_TEMPLATE = """
     You are NexoraGuard, an AI assistant for Nexora Pty Ltd, an Australian SME insurance broker.
     Your primary goal is to provide accurate, helpful, and concise information based **ONLY** on the context provided below.
@@ -450,33 +404,6 @@ def init_nexora_rag():
         print("Error: Vector store not available. RAG chain cannot be initialized.")
         rag_chain = None
 
-    # # ### Quick Test
-    # def ask_and_debug(chain, question: str):
-    #     # 1) retrieve the top-k docs
-    #     docs = chain.retriever.get_relevant_documents(question)
-    #     # 2) build exactly the same context string
-    #     context = "\n\n".join(doc.page_content for doc in docs)
-    #     print("Actual question: ", question)
-    #     print('-'*50)
-    #     print("───── CONTEXT SENT TO LLM ─────\n")
-    #     print(context)
-    #     print("\n──────── END CONTEXT ────────\n")
-    #     # 3) finally ask the chain
-    #     return chain.invoke({'query': question})
-
-    # # now use our helper instead of rag_chain.invoke:
-    # question = 'What does Professional Indemnity cover?'
-    # print(ask_and_debug(rag_chain, question))
-
-    # question = 'How do I change my password?'
-    # print(ask_and_debug(rag_chain, question))
-
-    # question = 'How do I update my personal details?'
-    # print(ask_and_debug(rag_chain, question))
-
-    # ### 5.3. Intelligent Query Processing Function
-    # This function will take a user query, get intent/entities, and then invoke the RAG chain.
-    # It can also implement pre/post-processing logic.
 
     def ask_nexora_guard(query: str):
         if not rag_chain:
@@ -493,14 +420,6 @@ def init_nexora_rag():
             return {"answer": "You're welcome! If you have more questions later, feel free to ask. Have a great day!", "sources": [], "intent": intent, "entities": entities}
         if intent == 'ask_agent':
             return {"answer": "If you'd like to speak with a human agent, you can contact Nexora support at support@nexora.com.au or call us at [Nexora Phone Number - Placeholder].", "sources": [], "intent": intent, "entities": entities}
-        
-        # --- Modify query or context for RAG based on intent/entities (Example) ---
-        # For instance, if a specific product is mentioned, we could try to make the query more explicit
-        # or add a filter to the retriever if the retriever supports metadata filtering directly.
-        # For now, the prompt is generic but the LLM will use the full context of retrieved docs.
-        # The current `vector_store.as_retriever` doesn't easily take dynamic metadata filters
-        # in a simple way here without custom retriever logic. So, entities are mainly for prompt conditioning
-        # and for potential display in UI.
         
         # If specific product is identified, add it to the question to guide LLM focus even more
         # This is a simple form of "stuffing" the query for better context to LLM.
@@ -536,38 +455,3 @@ def init_nexora_rag():
         }
     
     return ask_nexora_guard, rag_chain, vector_store
-
-# ### 5.4. Quick Test of the Full Pipeline
-
-# if rag_chain: # Only test if RAG chain is set up
-    # print("\n--- Testing the ask_nexora_guard function ---")
-    
-    # # Test Case 1: Product Information
-    # response1 = ask_nexora_guard("What is Professional Indemnity insurance?")
-    # # print(f"\n🤖 NexoraGuard:\n{response1['answer']}")
-    # print(f"Source Documents Retrieved: {len(response1['sources'])}")
-    # if response1['sources']:
-    #     print(f"  Top source: {response1['sources'][0].metadata.get('source_type', 'N/A')} - {response1['sources'][0].metadata.get('product_name', response1['sources'][0].metadata.get('question', 'N/A'))}")
-
-    # # Test Case 2: FAQ Style Question
-    # response2 = ask_nexora_guard("How do I get a copy of my policy documents?")
-    # print(f"\n🤖 NexoraGuard:\n{response2['answer']}")
-    # print(f"Source Documents Retrieved: {len(response2['sources'])}")
-    # if response2['sources']:
-    #     print(f"  Top source: {response2['sources'][0].metadata.get('source_type', 'N/A')} - {response2['sources'][0].metadata.get('category', 'N/A')}")
-
-    # # Test Case 3: Question likely not in KB
-    # response3 = ask_nexora_guard("What's the weather like in Sydney for an outdoor event?")
-    # print(f"\n🤖 NexoraGuard:\n{response3['answer']}")
-    # print(f"Source Documents Retrieved: {len(response3['sources'])}")
-    
-    # # Test Case 4: More complex query potentially needing info from product docs
-    # response4 = ask_nexora_guard("Tell me about exclusions for Business Insurance")
-    # print(f"\n🤖 NexoraGuard:\n{response4['answer']}")
-    # print(f"Source Documents Retrieved: {len(response4['sources'])}")
-    # if response4['sources']:
-    #     print(f"  Top source: {response4['sources'][0].metadata.get('source_type', 'N/A')} - {response4['sources'][0].metadata.get('product_name', 'N/A')}")
-        
-# else:
-#     print("RAG chain is not initialized, skipping tests for ask_nexora_guard.")
-
